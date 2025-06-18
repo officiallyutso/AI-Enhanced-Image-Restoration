@@ -42,4 +42,10 @@ class ImageEnhancer:
             bg_upsampler=self.sr_model
         )
         
+    def upscale_image(self, image_path, output_path):
+        """Upscale image using RealESRGAN."""
+        img = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
+        output, _ = self.sr_model.enhance(img, outscale=4)
+        cv2.imwrite(output_path, output)
+        return output
     
