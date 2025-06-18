@@ -12,4 +12,15 @@ def main():
     # Suppress warnings for cleaner output
     suppress_warnings()
     
+    # Download models if not present
+    if not verify_models():
+        print("Downloading required models...")
+        download_models()
     
+    # Initialize enhancer
+    print("Initializing image enhancer...")
+    enhancer = ImageEnhancer()
+    
+    # Example usage
+    input_image = "path/to/your/image.jpg"  # Replace with actual path
+    output_image = "enhanced_output.jpg"
