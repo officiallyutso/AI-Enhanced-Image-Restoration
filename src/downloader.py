@@ -29,3 +29,15 @@ def download_models():
             print(f"{filename} already exists. Skipping download.")
 
 
+def verify_models():
+    """Verify that all required models are downloaded."""
+    missing_models = []
+    for filename in MODEL_URLS.keys():
+        file_path = os.path.join(MODELS_DIR, filename)
+        if not os.path.exists(file_path):
+            missing_models.append(filename)
+    
+    if missing_models:
+        print(f"Missing models: {missing_models}")
+        return False
+    return True
