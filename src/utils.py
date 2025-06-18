@@ -15,3 +15,10 @@ def validate_image_path(image_path):
     _, ext = os.path.splitext(image_path.lower())
     if ext not in valid_extensions:
         raise ValueError(f"Unsupported image format: {ext}")
+
+
+def create_output_dir(output_path):
+    """Create output directory if it doesn't exist."""
+    output_dir = os.path.dirname(output_path)
+    if output_dir and not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
