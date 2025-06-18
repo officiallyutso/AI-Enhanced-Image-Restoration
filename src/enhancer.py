@@ -49,3 +49,11 @@ class ImageEnhancer:
         cv2.imwrite(output_path, output)
         return output
     
+    def enhance_faces(self, image_path, output_path):
+        """Enhance faces in image using GFPGAN."""
+        img = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
+        _, _, img_enhanced = self.face_enhancer.enhance(
+            img, has_aligned=False, only_center_face=False, paste_back=True
+        )
+        cv2.imwrite(output_path, img_enhanced)
+        return img_enhanced
