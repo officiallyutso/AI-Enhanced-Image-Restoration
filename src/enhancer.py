@@ -57,3 +57,14 @@ class ImageEnhancer:
         )
         cv2.imwrite(output_path, img_enhanced)
         return img_enhanced
+
+    def enhance_image(self, image_path, output_path, enhance_faces_only=False):
+        """Enhanced image with both upscaling and face enhancement."""
+        try:
+            if enhance_faces_only:
+                return self.enhance_faces(image_path, output_path)
+            else:
+                return self.enhance_faces(image_path, output_path)
+        except Exception as e:
+            print(f"Error enhancing image: {e}")
+            return None
