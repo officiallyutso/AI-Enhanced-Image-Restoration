@@ -22,3 +22,11 @@ def create_output_dir(output_path):
     output_dir = os.path.dirname(output_path)
     if output_dir and not os.path.exists(output_dir):
         os.makedirs(output_dir, exist_ok=True)
+
+def resize_for_display(image_path, max_size=(800, 800)):
+    """Resize image for display purposes."""
+    image = Image.open(image_path)
+    image.thumbnail(max_size, Image.LANCZOS)
+    return image
+
+
