@@ -98,7 +98,7 @@ pip install -r requirements.txt
 
 3. Run the setup script to download model weights:
 ```bash
-python setup_models.py
+python setup.py
 ```
 
 ## Usage
