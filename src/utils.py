@@ -30,3 +30,9 @@ def resize_for_display(image_path, max_size=(800, 800)):
     return image
 
 
+def get_output_filename(input_path, suffix="_enhanced"):
+    """Generate output filename based on input path."""
+    dir_path = os.path.dirname(input_path)
+    base_name = os.path.splitext(os.path.basename(input_path))[0]
+    ext = os.path.splitext(input_path)[1]
+    return os.path.join(dir_path, f"{base_name}{suffix}{ext}")
