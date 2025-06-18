@@ -14,4 +14,32 @@ class ImageEnhancer:
         self.face_enhancer = None
         self._load_models()
         
+    def _load_models(self):
+        """Load RealESRGAN and GFPGAN models."""
+        # Load RealESRGAN
+        sr_model = SRVGGNetCompact(
+            num_in_ch=3, num_out_ch=3, num_feat=64, 
+            num_conv=32, upscale=4, act_type='prelu'
+        )
+        half = True if torch.cuda.is_available() else False
+        
+        self.sr_model = RealESRGANer(
+            scale=REALESRGAN_SCALE,
+            model_path=REALESRGAN_MODEL_PATH,
+            model=sr_model,
+            tile=REALESRGAN_TILE,
+            tile_pad=REALESRGAN_TILE_PAD,
+            pre_pad=REALESRGAN_PRE_PAD,
+            half=half
+        )
+        
+        # Load GFPGAN
+        self.face_enhancer = GFPGANer(
+            model_path=GFPGAN_MODEL_PATH,
+            upscale=GFPGAN_UPSCALE,
+            arch=GFPGAN_ARCH,
+            channel_multiplier=GFPGAN_CHANNEL_MULTIPLIER,
+            bg_upsampler=self.sr_model
+        )
+        
     
